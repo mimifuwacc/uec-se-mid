@@ -67,3 +67,7 @@ class TestRPNCalculatorErrorCases(unittest.TestCase):
         self.assertRaisesRegex(
             ValueError, "^演算子が不足しています$", calculate_rpn, "1 2 3 +"
         )
+
+    def test_division_by_zero(self):
+        """ゼロ除算エラー"""
+        self.assertRaisesRegex(ValueError, "^ゼロ除算エラー$", calculate_rpn, "1 0 /")
