@@ -1,5 +1,7 @@
 # 電気通信大学 MICS ソフトウェア工学 2025 中間課題
 
+## 課題内容
+
 > 【演習】GitHub リポジトリで TDD を実演せよ
 >
 > - 第 8 回までの授業内容を踏まえて TDD を実演すること．
@@ -8,19 +10,45 @@
 > - 剽窃や成り済ましは，一発で不可．
 > - 提出は任意．
 
+## 使用方法
+
+実行には [uv](https://docs.astral.sh/uv/) が必要です。
+
+セットアップ
+
+```bash
+uv sync
+```
+
+テストの実行
+
+```bash
+uv run python -m tests.main -v
+```
+
+アプリケーションの実行例
+
+```bash
+$ uv run python
+
+>>> from src.main import calculate_rpn
+>>> calculate_rpn("5 2 -")
+3
+```
+
 ## リポジトリ構成
 
 ```
 .
 ├── README.md
-├── docs    # 仕様やテストシナリオなどのドキュメント
-│   ├── spec.md
-│   └── test-plan.md
-├── src     # 実装本体
-│   └── main.py
-├── tests   # テスト
-│   ├── main.py
-│   └── test_rpn_calculator.py
+├── docs # 仕様やテストシナリオなどのドキュメント
+│ ├── spec.md
+│ └── test-plan.md
+├── src # 実装本体
+│ └── main.py
+├── tests # テスト
+│ ├── main.py
+│ └── test_rpn_calculator.py
 ├── lefthook.yaml
 ├── mise.toml
 ├── pyproject.toml
