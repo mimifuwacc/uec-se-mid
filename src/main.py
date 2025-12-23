@@ -28,17 +28,17 @@ def calculate_rpn(expression: str):
             a = stack.pop()
 
             # 演算を実行
-            if token == "+":
-                result = a + b
-            elif token == "-":
-                result = a - b
-            elif token == "*":
-                result = a * b
-            elif token == "/":
-                if b == 0:
-                    raise ValueError("ゼロ除算エラー")
-                result = a / b
+            operations = {
+                "+": lambda x, y: x + y,
+                "-": lambda x, y: x - y,
+                "*": lambda x, y: x * y,
+                "/": lambda x, y: x / y,
+            }
 
+            if token == "/" and b == 0:
+                raise ValueError("ゼロ除算エラー")
+
+            result = operations[token](a, b)
             stack.append(result)
         else:
             # 数値として処理する
