@@ -61,3 +61,9 @@ class TestRPNCalculatorErrorCases(unittest.TestCase):
         self.assertRaisesRegex(
             ValueError, "^オペランドが不足しています$", calculate_rpn, "1 +"
         )
+
+    def test_insufficient_operators(self):
+        """計算後に数字が2つ以上残っている場合のエラー"""
+        self.assertRaisesRegex(
+            ValueError, "^演算子が不足しています$", calculate_rpn, "1 2 3 +"
+        )
