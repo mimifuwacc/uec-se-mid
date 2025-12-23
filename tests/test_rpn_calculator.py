@@ -71,3 +71,9 @@ class TestRPNCalculatorErrorCases(unittest.TestCase):
     def test_division_by_zero(self):
         """ゼロ除算エラー"""
         self.assertRaisesRegex(ValueError, "^ゼロ除算エラー$", calculate_rpn, "1 0 /")
+
+    def test_unknown_token(self):
+        """定義されていない文字が入力された場合のエラー"""
+        self.assertRaisesRegex(
+            ValueError, "^不明なトークンエラー: @$", calculate_rpn, "1 2 @ +"
+        )
