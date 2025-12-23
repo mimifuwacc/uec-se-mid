@@ -8,6 +8,32 @@
 > - 剽窃や成り済ましは，一発で不可．
 > - 提出は任意．
 
+## リポジトリ構成
+
+```
+.
+├── README.md
+├── docs    # 仕様やテストシナリオなどのドキュメント
+│   ├── spec.md
+│   └── test-plan.md
+├── src     # 実装本体
+│   └── main.py
+├── tests   # テスト
+│   ├── main.py
+│   └── test_rpn_calculator.py
+├── lefthook.yaml
+├── mise.toml
+├── pyproject.toml
+├── ruff.toml
+└── uv.lock
+
+6 directories, 14 files
+```
+
+uv + Python 3.13 を使用している。Formatter/Linter には ruff を使用し、mypy を用いて型チェックを行っている。
+
+また、記述したテストが自動で実行されるように、GitHub Actions を利用して CI を構築している。
+
 ## 行なったこと
 
 [Canon TDD](https://tidyfirst.substack.com/p/canon-tdd) を参考に TDD で 逆ポーランド記法電卓を Python で実装した。
