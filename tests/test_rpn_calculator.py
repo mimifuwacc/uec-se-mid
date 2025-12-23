@@ -21,3 +21,11 @@ class TestRPNCalculatorNormalCases(unittest.TestCase):
     def test_multiplication(self):
         """乗算が正しく行えること"""
         self.assertEqual(calculate_rpn("3 4 *"), 12)
+
+    def test_division_integer_result(self):
+        """除算の結果が整数になること（割り切れる場合）"""
+        self.assertEqual(calculate_rpn("6 2 /"), 3)
+
+    def test_division_decimal_result(self):
+        """除算の結果が小数になること（割り切れない場合）"""
+        self.assertEqual(calculate_rpn("5 2 /"), 2.5)

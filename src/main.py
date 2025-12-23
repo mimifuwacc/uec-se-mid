@@ -17,7 +17,7 @@ def calculate_rpn(expression: str):
 
     for token in tokens:
         # トークンが演算子かどうかを判定
-        if token in {"+", "-", "*"}:
+        if token in {"+", "-", "*", "/"}:
             # スタックからオペランドを取得（後に入ったものが2番目のオペランド）
             b = stack.pop()
             a = stack.pop()
@@ -29,6 +29,8 @@ def calculate_rpn(expression: str):
                 result = a - b
             elif token == "*":
                 result = a * b
+            elif token == "/":
+                result = a / b
 
             stack.append(result)
         else:
