@@ -24,7 +24,7 @@ def calculate_rpn(expression: str):
 
             # 演算を実行
             if token == "+":
-                result = 9999
+                result = a + b
             elif token == "-":
                 result = a - b
             elif token == "*":
