@@ -11,6 +11,8 @@ def calculate_rpn(expression: str):
         expression: 逆ポーランド記法の数式（スペース区切り）
     Returns:
         result: 計算結果
+    Raise:
+        ValueError: 各種エラーが発生した場合
     """
     tokens = expression.split()
     stack: list[int | float] = []
