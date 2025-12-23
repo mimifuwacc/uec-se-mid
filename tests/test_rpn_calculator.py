@@ -39,3 +39,15 @@ class TestRPNCalculatorNormalCases(unittest.TestCase):
         self.assertEqual(
             calculate_rpn("5 1 2 + 4 * + 3 -"), 14
         )  # 5 + ((1 + 2) * 4) - 3 = 14
+
+    def test_decimal_numbers(self):
+        """小数同士の演算が正しく行えること"""
+        self.assertEqual(calculate_rpn("3.5 2.5 +"), 6.0)
+
+    def test_negative_numbers(self):
+        """負数を含む演算が正しく行えること"""
+        self.assertEqual(calculate_rpn("-3 4 +"), 1)
+
+    def test_decimal_negative_numbers(self):
+        """小数と負数を両方含む演算が正しく行えること"""
+        self.assertEqual(calculate_rpn("-3.5 4.5 +"), 1.0)
