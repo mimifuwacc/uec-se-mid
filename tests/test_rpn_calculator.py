@@ -29,3 +29,13 @@ class TestRPNCalculatorNormalCases(unittest.TestCase):
     def test_division_decimal_result(self):
         """除算の結果が小数になること（割り切れない場合）"""
         self.assertEqual(calculate_rpn("5 2 /"), 2.5)
+
+    def test_complex_expression_three_terms(self):
+        """3項以上の複合演算が行えること"""
+        self.assertEqual(calculate_rpn("3 4 + 2 *"), 14)  # (3 + 4) * 2 = 14
+
+    def test_complex_expression_four_terms(self):
+        """4項の複合演算が行えること"""
+        self.assertEqual(
+            calculate_rpn("5 1 2 + 4 * + 3 -"), 14
+        )  # 5 + ((1 + 2) * 4) - 3 = 14
