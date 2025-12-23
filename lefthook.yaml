@@ -1,0 +1,13 @@
+pre-commit:
+  commands:
+    format:
+      run: uv run ruff format
+    lint:
+      run: uv run ruff check --fix
+    git-update:
+      run: git update-index --again
+
+pre-push:
+  commands:
+    type-check:
+      run: uv run mypy src/
