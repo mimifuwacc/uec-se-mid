@@ -45,4 +45,7 @@ def calculate_rpn(expression: str):
                 num = int(token)
             stack.append(num)
 
+    if len(stack) > 1:
+        raise ValueError("演算子が不足しています")
+
     return stack[0]
