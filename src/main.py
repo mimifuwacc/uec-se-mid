@@ -40,12 +40,16 @@ def calculate_rpn(expression: str):
             stack.append(result)
         else:
             # 数値として処理する
-            # 整数または小数としてパース
-            if "." in token:
-                num = float(token)
-            else:
-                num = int(token)
-            stack.append(num)
+            try:
+                # 整数または小数としてパース
+                if "." in token:
+                    num = float(token)
+                else:
+                    num = int(token)
+                stack.append(num)
+            except ValueError:
+                # 数値に変換できない場合は不明なトークン
+                raise ValueError(f"不明なトークンエラー: {token}")
 
     if len(stack) > 1:
         raise ValueError("演算子が不足しています")
