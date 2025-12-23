@@ -1,5 +1,7 @@
 # 電気通信大学 MICS ソフトウェア工学 2025 中間課題
 
+## 課題内容
+
 > 【演習】GitHub リポジトリで TDD を実演せよ
 >
 > - 第 8 回までの授業内容を踏まえて TDD を実演すること．
@@ -7,6 +9,58 @@
 > - 提出物は， 提出者自身のユーザアカウント内の公開リポジトリに限定．
 > - 剽窃や成り済ましは，一発で不可．
 > - 提出は任意．
+
+## 使用方法
+
+実行には [uv](https://docs.astral.sh/uv/) が必要です。
+
+セットアップ
+
+```bash
+uv sync
+```
+
+テストの実行
+
+```bash
+uv run python -m tests.main -v
+```
+
+アプリケーションの実行例
+
+```bash
+$ uv run python
+
+>>> from src.main import calculate_rpn
+>>> calculate_rpn("5 2 -")
+3
+```
+
+## リポジトリ構成
+
+```
+.
+├── README.md
+├── docs # 仕様やテストシナリオなどのドキュメント
+│ ├── spec.md
+│ └── test-plan.md
+├── src # 実装本体
+│ └── main.py
+├── tests # テスト
+│ ├── main.py
+│ └── test_rpn_calculator.py
+├── lefthook.yaml
+├── mise.toml
+├── pyproject.toml
+├── ruff.toml
+└── uv.lock
+
+6 directories, 14 files
+```
+
+uv + Python 3.13 を使用している。Formatter/Linter には ruff を使用し、mypy を用いて型チェックを行っている。
+
+また、記述したテストが自動で実行されるように、GitHub Actions を利用して CI を構築している。
 
 ## 行なったこと
 
@@ -23,11 +77,11 @@
 
 ### 1. 仕様の決定
 
-逆ポーランド記法で記述された文字列を処理し計算を行う電卓の仕様を、[docs/spec.md](docs/spec.md) のように決定した (PR: #2)。
+逆ポーランド記法で記述された文字列を処理し計算を行う電卓の仕様を、[docs/spec.md](docs/spec.md) のように決定した (PR: [#2](https://github.com/mimifuwacc/uec-se-mid/pull/2))。
 
 ### 2. テストシナリオの作成
 
-1 で作成した仕様をカバーするために必要なテストシナリオを [docs/test-plan.md](docs/test-plan.md) のように作成した (PR: #2)。
+1 で作成した仕様をカバーするために必要なテストシナリオを [docs/test-plan.md](docs/test-plan.md) のように作成した (PR: [#2](https://github.com/mimifuwacc/uec-se-mid/pull/2))。
 
 ### 3. テストケース作成および実装
 
@@ -35,11 +89,11 @@
 
 各テストシナリオについて、
 
-- 加算・減算・乗算: #4
-- 除算: #5
-- 複合演算: #6
-- 小数・負数を含む計算: #7
-- 各種エラー出力: #8
+- 加算・減算・乗算: [#4](https://github.com/mimifuwacc/uec-se-mid/pull/4)
+- 除算: [#5](https://github.com/mimifuwacc/uec-se-mid/pull/5)
+- 複合演算: [#6](https://github.com/mimifuwacc/uec-se-mid/pull/6)
+- 小数・負数を含む計算: [#7](https://github.com/mimifuwacc/uec-se-mid/pull/7)
+- 各種エラー出力: [#8](https://github.com/mimifuwacc/uec-se-mid/pull/8)
 
 の Pull Request で対応した。
 各種エラー出力について、一つ一つが細かかったので PR はまとめたが、commit は分けている。
@@ -48,4 +102,4 @@
 
 ### 4. リファクタ
 
-実装の方法や関数の分離などを行なった (PR: #9 )。リファクタを行なった後、テストが通るかを確認し、振る舞いが変わっていないことを確認した。
+実装の方法や関数の分離などを行なった (PR: [#9](https://github.com/mimifuwacc/uec-se-mid/pull/9))。リファクタを行なった後、テストが通るかを確認し、振る舞いが変わっていないことを確認した。
