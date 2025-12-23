@@ -51,3 +51,13 @@ class TestRPNCalculatorNormalCases(unittest.TestCase):
     def test_decimal_negative_numbers(self):
         """小数と負数を両方含む演算が正しく行えること"""
         self.assertEqual(calculate_rpn("-3.5 4.5 +"), 1.0)
+
+
+class TestRPNCalculatorErrorCases(unittest.TestCase):
+    """異常系のテストケース"""
+
+    def test_insufficient_operands(self):
+        """演算子の前にオペランドが1つしかない場合のエラー"""
+        self.assertRaisesRegex(
+            ValueError, "^オペランドが不足しています$", calculate_rpn, "1 +"
+        )
