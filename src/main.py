@@ -3,6 +3,50 @@
 """
 
 
+def _parse_number(token: str) -> int | float:
+    """トークンを数値にパースする
+
+    Args:
+        token: 数値を表す文字列
+
+    Returns:
+        パースされた数値（整数または小数）
+
+    Raises:
+        ValueError: 数値に変換できない場合
+    """
+    if "." in token:
+        return float(token)
+    return int(token)
+
+
+def _apply_operator(a: int | float, b: int | float, operator: str) -> int | float:
+    """演算子を適用する
+
+    Args:
+        a: 1番目のオペランド
+        b: 2番目のオペランド
+        operator: 演算子（+, -, *, /）
+
+    Returns:
+        演算結果
+
+    Raises:
+        ValueError: ゼロ除算が発生した場合
+    """
+    operations = {
+        "+": lambda x, y: x + y,
+        "-": lambda x, y: x - y,
+        "*": lambda x, y: x * y,
+        "/": lambda x, y: x / y,
+    }
+
+    if operator == "/" and b == 0:
+        raise ValueError("ゼロ除算エラー")
+
+    return operations[operator](a, b)
+
+
 def calculate_rpn(expression: str):
     """
     逆ポーランド記法で表現された数式を計算する
@@ -27,27 +71,12 @@ def calculate_rpn(expression: str):
             b = stack.pop()
             a = stack.pop()
 
-            # 演算を実行
-            operations = {
-                "+": lambda x, y: x + y,
-                "-": lambda x, y: x - y,
-                "*": lambda x, y: x * y,
-                "/": lambda x, y: x / y,
-            }
-
-            if token == "/" and b == 0:
-                raise ValueError("ゼロ除算エラー")
-
-            result = operations[token](a, b)
+            result = _apply_operator(a, b, token)
             stack.append(result)
         else:
             # 数値として処理する
             try:
-                # 整数または小数としてパース
-                if "." in token:
-                    num = float(token)
-                else:
-                    num = int(token)
+                num = _parse_number(token)
                 stack.append(num)
             except ValueError:
                 # 数値に変換できない場合は不明なトークン
