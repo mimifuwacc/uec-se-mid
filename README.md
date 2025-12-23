@@ -77,11 +77,11 @@ uv + Python 3.13 を使用している。Formatter/Linter には ruff を使用�
 
 ### 1. 仕様の決定
 
-逆ポーランド記法で記述された文字列を処理し計算を行う電卓の仕様を、[docs/spec.md](docs/spec.md) のように決定した (PR: #2)。
+逆ポーランド記法で記述された文字列を処理し計算を行う電卓の仕様を、[docs/spec.md](docs/spec.md) のように決定した (PR: [#2](https://github.com/mimifuwacc/uec-se-mid/pull/2))。
 
 ### 2. テストシナリオの作成
 
-1 で作成した仕様をカバーするために必要なテストシナリオを [docs/test-plan.md](docs/test-plan.md) のように作成した (PR: #2)。
+1 で作成した仕様をカバーするために必要なテストシナリオを [docs/test-plan.md](docs/test-plan.md) のように作成した (PR: [#2](https://github.com/mimifuwacc/uec-se-mid/pull/2))。
 
 ### 3. テストケース作成および実装
 
@@ -89,11 +89,11 @@ uv + Python 3.13 を使用している。Formatter/Linter には ruff を使用�
 
 各テストシナリオについて、
 
-- 加算・減算・乗算: #4
-- 除算: #5
-- 複合演算: #6
-- 小数・負数を含む計算: #7
-- 各種エラー出力: #8
+- 加算・減算・乗算: [#4](https://github.com/mimifuwacc/uec-se-mid/pull/4)
+- 除算: [#5](https://github.com/mimifuwacc/uec-se-mid/pull/5)
+- 複合演算: [#6](https://github.com/mimifuwacc/uec-se-mid/pull/6)
+- 小数・負数を含む計算: [#7](https://github.com/mimifuwacc/uec-se-mid/pull/7)
+- 各種エラー出力: [#8](https://github.com/mimifuwacc/uec-se-mid/pull/8)
 
 の Pull Request で対応した。
 各種エラー出力について、一つ一つが細かかったので PR はまとめたが、commit は分けている。
@@ -102,4 +102,4 @@ uv + Python 3.13 を使用している。Formatter/Linter には ruff を使用�
 
 ### 4. リファクタ
 
-実装の方法や関数の分離などを行なった (PR: #9 )。リファクタを行なった後、テストが通るかを確認し、振る舞いが変わっていないことを確認した。
+実装の方法や関数の分離などを行なった (PR: [#9](https://github.com/mimifuwacc/uec-se-mid/pull/9))。リファクタを行なった後、テストが通るかを確認し、振る舞いが変わっていないことを確認した。
