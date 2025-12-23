@@ -11,6 +11,8 @@ def calculate_rpn(expression: str):
         expression: 逆ポーランド記法の数式（スペース区切り）
     Returns:
         result: 計算結果
+    Raise:
+        ValueError: 各種エラーが発生した場合
     """
     tokens = expression.split()
     stack: list[int | float] = []
@@ -18,6 +20,9 @@ def calculate_rpn(expression: str):
     for token in tokens:
         # トークンが演算子かどうかを判定
         if token in {"+", "-", "*", "/"}:
+            # 2項演算子には2つのオペランドが必要
+            if len(stack) < 2:
+                raise ValueError("オペランドが不足しています")
             # スタックからオペランドを取得（後に入ったものが2番目のオペランド）
             b = stack.pop()
             a = stack.pop()
@@ -30,16 +35,25 @@ def calculate_rpn(expression: str):
             elif token == "*":
                 result = a * b
             elif token == "/":
+                if b == 0:
+                    raise ValueError("ゼロ除算エラー")
                 result = a / b
 
             stack.append(result)
         else:
             # 数値として処理する
-            # 整数または小数としてパース
-            if "." in token:
-                num = float(token)
-            else:
-                num = int(token)
-            stack.append(num)
+            try:
+                # 整数または小数としてパース
+                if "." in token:
+                    num = float(token)
+                else:
+                    num = int(token)
+                stack.append(num)
+            except ValueError:
+                # 数値に変換できない場合は不明なトークン
+                raise ValueError(f"不明なトークンエラー: {token}")
+
+    if len(stack) > 1:
+        raise ValueError("演算子が不足しています")
 
     return stack[0]
