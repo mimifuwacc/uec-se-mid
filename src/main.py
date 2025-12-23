@@ -13,7 +13,7 @@ def calculate_rpn(expression: str):
         result: 計算結果
     """
     tokens = expression.split()
-    stack = []
+    stack: list[int | float] = []
 
     for token in tokens:
         # トークンが演算子かどうかを判定
