@@ -33,6 +33,8 @@ def calculate_rpn(expression: str):
             elif token == "*":
                 result = a * b
             elif token == "/":
+                if b == 0:
+                    raise ValueError("ゼロ除算エラー")
                 result = a / b
 
             stack.append(result)
